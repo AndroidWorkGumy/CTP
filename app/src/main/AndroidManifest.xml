@@ -2,13 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.radu.firstapp">
 
-    <uses-permission android:name="android.permission.RECEIVE_SMS" />
-    <uses-permission android:name="android.permission.READ_SMS" />
-    <uses-permission android:name="android.permission.SEND_SMS" />
-
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -21,32 +17,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <receiver
-            android:name=".SmsReceiver"
-            android:enabled="true"
-            android:exported="true"
-            android:permission="android.permission.BROADCAST_SMS">
+        <activity
+            android:name=".ChatLayout"
+            android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.provider.Telephony.SMS_DELIVER" />
-            </intent-filter>
-        </receiver>
-
-        <activity android:name=".ComposeSmsActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <action android:name="android.intent.action.SENDTO" />
+                <action android:name="com.example.radu.firstapp.CHATLAYOUT" />
 
                 <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="sms" />
-                <data android:scheme="smsto" />
-                <data android:scheme="mms" />
-                <data android:scheme="mmsto" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChatLayout"></activity>
     </application>
 
 </manifest>
