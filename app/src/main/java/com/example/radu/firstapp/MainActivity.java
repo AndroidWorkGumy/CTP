@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.Calendar;
+import java.util.Random;
 
 public class MainActivity extends Activity {
 
@@ -60,11 +61,14 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        /*final Button button = (Button) findViewById(R.id.button);
+        final Button button = (Button) findViewById(R.id.button);
         final EditText ctpLine = (EditText) findViewById(R.id.ctpLine);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int min = 132795;
+                int max = 865742;
+                Random randomNumber = new Random();
                 String linie = ctpLine.getText().toString();
                 if (!linie.isEmpty()) {
                     Calendar rightNow = Calendar.getInstance();
@@ -73,18 +77,16 @@ public class MainActivity extends Activity {
                            getHourAndMinutes(rightNow)
                             + " in " + getDay(rightNow) + "/" + getMonth(rightNow) +
                             "/" + rightNow.get(Calendar.YEAR) +
-                            ". Cost total:0.50EUR + Tva. Cod confirmare: 123456";
-                    startActivity(new Intent(MainActivity.this, ComposeSmsActivity.class));
-//                    ContentValues values = new ContentValues();
-//                    values.put("address", "7479");
-//                    values.put("body", linie);
-//                    getContentResolver().insert(Uri.parse("content://sms/sent"), values);
-//                    values.put("body", text);
-//                    getContentResolver().insert(Uri.parse("content://sms/inbox"), values);
+                            ". Cost total:0.50EUR + Tva. Cod confirmare: " + (randomNumber.nextInt(max - min + 1) + min);
+                    ContentValues values = new ContentValues();
+                    values.put("address", "7479");
+                    values.put("body", linie);
+                    getContentResolver().insert(Uri.parse("content://sms/sent"), values);
+                    values.put("body", text);
+                    getContentResolver().insert(Uri.parse("content://sms/inbox"), values);
                 }
             }
         });
-        */
     }
 
     @Override
